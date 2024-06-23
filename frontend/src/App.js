@@ -3,8 +3,6 @@ import CustomModal from "./components/CustomModal";
 import SurvivorForm from "./components/SurvivorForm";
 import axios from "axios";
 
-// headers: {"X-CSRFToken": csrfToken},
-// xsrfHeaderName: "X-CSRFToken",
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
@@ -78,7 +76,7 @@ const App = () => {
         key={item.id}
         className="list-group-item d-flex justify-content-between align-items-center"
       >
-        <span className="todo-title mr-2" title={item.name}>
+        <span className="mr-2" title={item.name} data-cy={'survivor-name'}>
           {item.name}
         </span>
         <span>
