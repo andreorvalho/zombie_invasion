@@ -37,7 +37,7 @@ const SurvivorForm = () => {
       })
       .catch((err) => {
         console.log(err.response.data);
-        setformErrors(err.response.data)
+        setformErrors(err.response.data);
       });
   }
 
