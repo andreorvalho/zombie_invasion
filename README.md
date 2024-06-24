@@ -7,10 +7,9 @@ The form should contain fields for the survivor’s name, age, gender, last loca
 
 # Instalation Guide:
 1. cd backend
-2. python manage.py migrate backend
-3. python manage.py migrate zombie_invasion
-4. cd ../frontend
-5. yarn install
+2. python manage.py migrate zombie_invasion
+3. cd ../frontend
+4. yarn install
 
 # USAGE:
 
@@ -31,7 +30,8 @@ visit: http://localhost:8000/admin and check if you can log in
 2. python manage.py test
 
 1. cd frontend
-2. yarn cypress run --spec "**/*.cy.js"
+2. yarn start
+3. yarn cypress run --spec "**/*.cy.js"
 
 # API DOCUMENTATION
 
@@ -58,7 +58,7 @@ visit: http://localhost:8000/admin and check if you can log in
    ```
    Responses:
 
-   200: Successfully registered the survivor, responds with the newly creted survivor data:
+   200: Successfully registered the survivor, responds with the newly created survivor data:
    ```
    {
      name: 'name',
@@ -74,6 +74,59 @@ visit: http://localhost:8000/admin and check if you can log in
    ```
 
    400: Fails to register the survivor and returns all the errors:
+   ```
+   {
+    "age": [
+        "A valid integer is required."
+    ],
+    "gender": [
+        "This field may not be blank."
+    ],
+    "latitude": [
+        "This field may not be blank."
+    ],
+    "longitude": [
+        "This field may not be blank."
+    ]
+   }
+   ```
+
+1.2. PUT '/survivors/id'
+
+  Updates a survivor.
+
+   Request body:
+   ```
+   {
+     name: 'name',
+     age: '12',
+     gender: 'gender',
+     latitude: 'latitude',
+     longitude: 'longitude',
+     water: 1,
+     food: 1,
+     medication: 1,
+     ammunition: 1
+   }
+   ```
+   Responses:
+
+   200: Successfully updated the survivor, responds with the survivor data:
+   ```
+   {
+     name: 'name',
+     age: '12',
+     gender: 'gender',
+     latitude: 'latitude',
+     longitude: 'longitude',
+     water: 1,
+     food: 1,
+     medication: 1,
+     ammunition: 1
+   }
+   ```
+
+   400: Fails to update the survivor and returns all the errors:
    ```
    {
     "age": [
