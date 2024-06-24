@@ -1,3 +1,10 @@
+# IMPLEMENTED FEATURES:
+
+1. Feature 1:
+Register survivors: Provide a form to add new survivors to the database. 
+The form should contain fields for the survivor’s name, age, gender, last location (latitude, longitude) and inventory.
+
+
 # Instalation Guide:
 1. cd backend
 2. python manage.py migrate backend
@@ -84,11 +91,9 @@ visit: http://localhost:8000/admin and check if you can log in
    }
    ```
 
-
-Feature 1:
-Register survivors: Provide a form to add new survivors to the database. 
-The form should contain fields for the survivor’s name, age, gender, last location (latitude, longitude) and inventory.
-
 IMPROVEMENTS
 
-5. Change the representation of location
+1. Change the representation of location to a point with 2 integer values
+2. Make sure all inventory is not possible to be under 0
+3. Age should also be an integer
+4. 
