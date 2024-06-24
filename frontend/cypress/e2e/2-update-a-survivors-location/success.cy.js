@@ -25,7 +25,7 @@ describe('update a survivor successfully', () => {
       statusCode: 200,
       body: SURVIVORS,
     }).as('survivors');
-    cy.intercept('POST', 'http://localhost:3000/api/survivors/', {
+    cy.intercept('PUT', 'http://localhost:3000/api/survivors/1', {
       statusCode: 200
     });
   });
