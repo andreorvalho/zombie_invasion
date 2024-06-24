@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 
 # Create your models here.
 
@@ -23,3 +24,20 @@ class Survivor(models.Model):
 
     def _str_(self):
         return self.name
+
+class InfectionReport(models.Model):
+    reported = models.ForeignKey(Survivor, on_delete=models.CASCADE, related_name='reported')
+    reporter = models.ForeignKey(Survivor, on_delete=models.CASCADE, related_name='reporter')
+
+    def __str__(self):
+        return self.reported.name + self.reporter.name
+
+    def _validate_reported_reporter(self):
+        if self.reported.id == self.reporter.id:
+            raise ValidationError("The reporter cannot be the same as the reported")
+        elif  InfectionReport.objects.filter(reported=self.reported, reporter=self.reporter).exists():
+            raise ValidationError("The reporter already has reported the surviver")
+
+    def save(self, *args, **kwargs):
+        self._validate_reported_reporter()
+        return super().save(*args, **kwargs)
