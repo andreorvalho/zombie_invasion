@@ -28,7 +28,8 @@ const SurvivorForm = () => {
   const handleCreateItem = (item) => {
     setformErrors([]);
     setsuccessMessage(null);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+
     axios
       .post(API_URL, item)
       .then((res) => {

@@ -1,6 +1,12 @@
 /// <reference types="cypress" />
 
 describe('create a survivor successfully', () => {
+  beforeEach(() => {
+    cy.intercept('POST', 'http://localhost:3000/api/survivors/', {
+      statusCode: 200
+    });
+  });
+
   it('creates a survivor with the minimal necessary fields', () => {
     // Navigates to the create link
     cy.visit('http://localhost:3000')
