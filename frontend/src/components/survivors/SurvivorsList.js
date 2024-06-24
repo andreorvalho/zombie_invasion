@@ -33,6 +33,9 @@ const SurvivorsList = () => {
   };
 
   const handleEditItem = (item) => {
+    setformErrors([]);
+    setsuccessMessage(null);
+
     axios
       .put(`${API_URL}${item.id}/`, item)
       .then((res) => {
