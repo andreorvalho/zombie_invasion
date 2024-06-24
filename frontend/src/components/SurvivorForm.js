@@ -7,7 +7,7 @@ import {
   Label,
 } from "reactstrap";
 
-const SurvivorForm = ({ survivor, onSave }) => {
+const SurvivorForm = ({ survivor, onSave, formErrors }) => {
   var [item, setItem] = useState(survivor);
 
   const handleChange = (e) => {
@@ -21,8 +21,14 @@ const SurvivorForm = ({ survivor, onSave }) => {
     return null;
   }
 
+
   return(
     <Form>
+      {Object.keys(formErrors).length > 0 &&
+        <div id="#asdasd" className="text-danger">
+          {Object.keys(formErrors).map(element => (<p>{`${element}: ${formErrors[element].map(a => a).join(', ')}`}</p>))}
+        </div>
+      }
       <FormGroup>
         <Label for="survivor-name">Name</Label>
         <Input
@@ -77,6 +83,55 @@ const SurvivorForm = ({ survivor, onSave }) => {
           onChange={handleChange}
           placeholder="Enter Survivor's Longitute"
         />
+      </FormGroup>
+      <FormGroup tag="fieldset">
+        <legend>
+          Inventory
+        </legend>
+        <FormGroup>
+          <Label for="survivor-water">Water</Label>
+          <Input
+            type="number"
+            id="survivor-water"
+            name="water"
+            value={item.water}
+            onChange={handleChange}
+            placeholder="Enter Survivor's Water"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="survivor-food">Food</Label>
+          <Input
+            type="number"
+            id="survivor-food"
+            name="food"
+            value={item.food}
+            onChange={handleChange}
+            placeholder="Enter Survivor's Food"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="survivor-medication">Medication</Label>
+          <Input
+            type="number"
+            id="survivor-medication"
+            name="medication"
+            value={item.medication}
+            onChange={handleChange}
+            placeholder="Enter Survivor's Medication"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="survivor-ammunition">Ammunition</Label>
+          <Input
+            type="number"
+            id="survivor-ammunition"
+            name="ammunition"
+            value={item.ammunition}
+            onChange={handleChange}
+            placeholder="Enter Survivor's Ammunition"
+          />
+        </FormGroup>
       </FormGroup>
       <Button
         color="success"

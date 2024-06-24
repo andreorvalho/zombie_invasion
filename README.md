@@ -4,8 +4,6 @@ cd backend
 python manage.py migrate backend
 python manage.py migrate zombie_invasion
 
-
-
 USAGE:
 #start server
 python manage.py createsuperuser
@@ -20,8 +18,10 @@ DEBUG=cypress:* yarn cypress run --spec "cypress/e2e/survivor/create_a_survivor.
 
 
 1. Change the way we render app to show a component that renders all other components
-2. Add tests for backend, frontend and cypress
-3. complete first feature
-4. add error handling for example no more than chars that is allowed
+
+3. complete first feature(specs for everything)
 5. Change the representation of location
-6. js tests
+
+
+Feature 1:
+Register survivors: Provide a form to add new survivors to the database. The form should contain fields for the survivor’s name, age, gender, last location (latitude, longitude) and inventory.

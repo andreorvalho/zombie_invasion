@@ -12,6 +12,14 @@ class Survivor(models.Model):
     gender = models.CharField(max_length=40)
     latitute = models.CharField(max_length=120)
     longitude = models.CharField(max_length=120)
+    # simplest solution:
+    # correct modeling would be 1 to many with inventory
+    # inventory would be: id, name, category, quantity
+    # this would offer more flexibility to the future
+    water = models.IntegerField(default=0)
+    food = models.IntegerField(default=0)
+    medication = models.IntegerField(default=0)
+    ammunition = models.IntegerField(default=0)
 
     def _str_(self):
         return self.name

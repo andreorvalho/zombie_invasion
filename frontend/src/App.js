@@ -12,6 +12,7 @@ const App = () => {
   var [items, setItems] = useState([]);
   var [modal, setModal] = useState(false);
   var [activeItem, setActiveItem] = useState(null);
+  var [formErrors, setformErrors] = useState([]);
 
   useEffect(() => {
     refreshList();
@@ -31,15 +32,26 @@ const App = () => {
   const handleEditItem = (item) => {
     axios
       .put(`${API_URL}${item.id}/`, item)
-      .then((res) => refreshList())
-      .catch((err) => console.log(err));
+      .then((res) => {
+        toggle();
+        refreshList();
+      })
+      .catch((err) => {
+        setformErrors(err.response.data);
+      });
   }
 
   const handleCreateItem = (item) => {
     axios
       .post(API_URL, item)
-      .then((res) => refreshList())
-      .catch((err) => console.log(err));
+      .then((res) => {
+        toggle();
+        refreshList();
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setformErrors(err.response.data)
+      });
   }
 
   const handleDelete = (item) => {
@@ -50,8 +62,6 @@ const App = () => {
   };
 
   const handleSubmit = (item) => {
-    toggle();
-
     if (item.id) {
       handleEditItem(item)
       return;
@@ -108,7 +118,7 @@ const App = () => {
                 className="btn btn-primary"
                 onClick={createItem}
               >
-                Add task
+                Add Survior
               </button>
             </div>
             <ul className="list-group list-group-flush border-top-0">
@@ -119,7 +129,7 @@ const App = () => {
       </div>
       {modal ? (
         <CustomModal itemType={'survivor'} toggle={toggle}>
-          <SurvivorForm survivor={activeItem} onSave={handleSubmit}/>
+          <SurvivorForm survivor={activeItem} onSave={handleSubmit} formErrors={formErrors}/>
         </CustomModal>
       ) : null}
     </main>
