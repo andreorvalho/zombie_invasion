@@ -6,9 +6,17 @@ import {
   Input,
   Label,
 } from "reactstrap";
+import axios from "axios";
 
-const SurvivorForm = ({ survivor, onSave, formErrors }) => {
-  var [item, setItem] = useState(survivor);
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
+
+const API_URL = "/api/survivors/";
+
+const SurvivorForm = () => {
+  var [item, setItem] = useState({});
+  var [formErrors, setformErrors] = useState([]);
+  var [successMessage, setsuccessMessage] = useState(null);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -17,16 +25,32 @@ const SurvivorForm = ({ survivor, onSave, formErrors }) => {
     setItem(updatedItem);
   };
 
-  if (!item) {
-    return null;
+  const handleCreateItem = (item) => {
+    setformErrors([]);
+    setsuccessMessage(null);
+    window.scrollTo(0, 0)
+    axios
+      .post(API_URL, item)
+      .then((res) => {
+        console.log(res);
+        setsuccessMessage('Created a new survivor with success');
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setformErrors(err.response.data)
+      });
   }
-
 
   return(
     <Form>
       {Object.keys(formErrors).length > 0 &&
-        <div id="#asdasd" className="text-danger">
+        <div className="text-danger">
           {Object.keys(formErrors).map(element => (<p>{`${element}: ${formErrors[element].map(a => a).join(', ')}`}</p>))}
+        </div>
+      }
+      {successMessage  &&
+        <div className="text-success">
+          {successMessage}
         </div>
       }
       <FormGroup>
@@ -133,10 +157,7 @@ const SurvivorForm = ({ survivor, onSave, formErrors }) => {
           />
         </FormGroup>
       </FormGroup>
-      <Button
-        color="success"
-        onClick={() => onSave(item)}
-      >
+      <Button data-cy="save-button" color="success" onClick={() => handleCreateItem(item)}>
         Save
       </Button>
     </Form>
