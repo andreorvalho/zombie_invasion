@@ -37,10 +37,17 @@ const SurvivorForm = () => {
         setsuccessMessage('Created a new survivor with success');
       })
       .catch((err) => {
-        console.log(err.response.data);
-        setformErrors(err.response.data);
+        if (err.response.status === 500) {
+          setformErrors({ api: ['The API is down']});
+        }
+        else {
+          console.log(err.response.data);
+          setformErrors(err.response.data);
+        }
       });
   }
+
+  console.log(Object.keys(formErrors));
 
   return(
     <Form>
