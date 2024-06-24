@@ -28,7 +28,7 @@ const LocationForm = ({ survivor, onSave }) => {
         <Input
           type="text"
           id="survivor-latitude"
-          name="latitute"
+          name="latitude"
           value={item.latitude}
           onChange={handleChange}
           placeholder="Enter Survivor's Latitude"
@@ -45,10 +45,7 @@ const LocationForm = ({ survivor, onSave }) => {
           placeholder="Enter Survivor's Longitude"
         />
       </FormGroup>
-      <Button
-        color="success"
-        onClick={() => onSave(item)}
-      >
+      <Button color="success" onClick={() => onSave(item)} data-cy="save-button">
         Save
       </Button>
     </Form>

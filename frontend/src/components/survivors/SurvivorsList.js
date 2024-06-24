@@ -71,20 +71,17 @@ const SurvivorsList = () => {
         key={item.id}
         className="list-group-item d-flex justify-content-between align-items-center"
       >
-        <span className="mr-2">
+        <span className="mr-2" data-cy="survivor-name">
           {item.name}
         </span>
-        <span className="mr-2">
+        <span className="mr-2" data-cy="survivor-latitude">
           {item.latitude}
         </span>
-        <span className="mr-2">
+        <span className="mr-2" data-cy="survivor-longitude">
           {item.longitude}
         </span>
         <span>
-          <button
-            className="btn btn-secondary mr-2"
-            onClick={() => editItem(item)}
-          >
+          <button className="btn btn-secondary mr-2" onClick={() => editItem(item)} data-cy="edit-location-button">
             Edit Location
           </button>
         </span>
