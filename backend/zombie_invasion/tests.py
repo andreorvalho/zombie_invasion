@@ -3,8 +3,8 @@ from .models import Survivor
 
 class AnimalTestCase(TestCase):
     def setUp(self):
-        Survivor.objects.create(name="Ana", age=24, gender='female', latitute='123123', longitude='65464564')
-        Survivor.objects.create(name="Andre", age=24, gender='male', latitute='23434', longitude='98988')
+        Survivor.objects.create(name="Ana", age=24, gender='female', latitude='123123', longitude='65464564')
+        Survivor.objects.create(name="Andre", age=24, gender='male', latitude='23434', longitude='98988')
 
     def test_animals_can_speak(self):
         """Animals that can speak are correctly identified"""

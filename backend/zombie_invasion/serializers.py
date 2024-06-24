@@ -9,7 +9,7 @@ class SurvivorSerializer(serializers.ModelSerializer):
             'name',
             'age',
             'gender',
-            'latitute',
+            'latitude',
             'longitude',
             'water',
             'food',

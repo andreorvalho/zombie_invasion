@@ -18,7 +18,7 @@ describe('fails to create a survivor successfully', () => {
     cy.get('input[id="survivor-age"]').type('sadsadas')
     cy.get('input[id="survivor-gender"]').type('Male')
     cy.get('input[id="survivor-latitude"]').type('1231312')
-    cy.get('input[id="survivor-longitute"]').type('6546456')
+    cy.get('input[id="survivor-longitude"]').type('6546456')
     cy.get('[data-cy=save-button').click()
 
     // Checks the error message is there but no success message

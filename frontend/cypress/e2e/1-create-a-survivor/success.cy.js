@@ -17,7 +17,7 @@ describe('create a survivor successfully', () => {
     cy.get('input[id="survivor-age"]').type('37')
     cy.get('input[id="survivor-gender"]').type('Male')
     cy.get('input[id="survivor-latitude"]').type('1231312')
-    cy.get('input[id="survivor-longitute"]').type('6546456')
+    cy.get('input[id="survivor-longitude"]').type('6546456')
     cy.get('[data-cy=save-button').click()
 
     // Checks the success message is there but the errors is not
@@ -35,7 +35,7 @@ describe('create a survivor successfully', () => {
     cy.get('input[id="survivor-age"]').type('37')
     cy.get('input[id="survivor-gender"]').type('Male')
     cy.get('input[id="survivor-latitude"]').type('1231312')
-    cy.get('input[id="survivor-longitute"]').type('6546456')
+    cy.get('input[id="survivor-longitude"]').type('6546456')
     cy.get('input[id="survivor-water"]').type(1)
     cy.get('input[id="survivor-food"]').type(1)
     cy.get('input[id="survivor-medication"]').type(1)

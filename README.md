@@ -1,7 +1,7 @@
 # IMPLEMENTED FEATURES:
 
 1. Feature 1:
-Register survivors: Provide a form to add new survivors to the database. 
+Register survivors: Provide a form to add new survivors to the database.
 The form should contain fields for the survivor’s name, age, gender, last location (latitude, longitude) and inventory.
 
 
@@ -22,7 +22,7 @@ The form should contain fields for the survivor’s name, age, gender, last loca
 1. cd frontend
 2. yarn start
 
-## test 
+## test
 python manage.py createsuperuser
 visit: http://localhost:8000/admin and check if you can log in
 
@@ -40,7 +40,7 @@ visit: http://localhost:8000/admin and check if you can log in
 1. Survivors
 1.1. POST '/survivors'
 
-   Registers a survivor on the APP. creates a record on the database. It requires at least name, age, gender, latitude and longitute.
+   Registers a survivor on the APP. creates a record on the database. It requires at least name, age, gender, latitude and Longitude.
 
    Request body:
    ```
@@ -49,7 +49,7 @@ visit: http://localhost:8000/admin and check if you can log in
      age: '12',
      gender: 'gender',
      latitude: 'latitude',
-     longitute: 'longitute',
+     longitude: 'longitude',
      water: 1,
      food: 1,
      medication: 1,
@@ -65,7 +65,7 @@ visit: http://localhost:8000/admin and check if you can log in
      age: '12',
      gender: 'gender',
      latitude: 'latitude',
-     longitute: 'longitute',
+     longitude: 'longitude',
      water: 1,
      food: 1,
      medication: 1,
@@ -82,7 +82,7 @@ visit: http://localhost:8000/admin and check if you can log in
     "gender": [
         "This field may not be blank."
     ],
-    "latitute": [
+    "latitude": [
         "This field may not be blank."
     ],
     "longitude": [
@@ -96,4 +96,4 @@ IMPROVEMENTS
 1. Change the representation of location to a point with 2 integer values
 2. Make sure all inventory is not possible to be under 0
 3. Age should also be an integer
-4. 
+4.

@@ -10,7 +10,7 @@ class Survivor(models.Model):
     name = models.CharField(max_length=120)
     age = models.IntegerField()
     gender = models.CharField(max_length=40)
-    latitute = models.CharField(max_length=120)
+    latitude = models.CharField(max_length=120)
     longitude = models.CharField(max_length=120)
     # simplest solution:
     # correct modeling would be 1 to many with inventory

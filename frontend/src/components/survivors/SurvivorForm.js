@@ -99,21 +99,21 @@ const SurvivorForm = () => {
         <Input
           type="text"
           id="survivor-latitude"
-          name="latitute"
+          name="latitude"
           value={item.latitude}
           onChange={handleChange}
           placeholder="Enter Survivor's Latitude"
         />
       </FormGroup>
       <FormGroup>
-        <Label for="survivor-longitute">Longitute</Label>
+        <Label for="survivor-longitude">Longitude</Label>
         <Input
           type="text"
-          id="survivor-longitute"
+          id="survivor-longitude"
           name="longitude"
-          value={item.longitute}
+          value={item.longitude}
           onChange={handleChange}
-          placeholder="Enter Survivor's Longitute"
+          placeholder="Enter Survivor's Longitude"
         />
       </FormGroup>
       <FormGroup tag="fieldset">
