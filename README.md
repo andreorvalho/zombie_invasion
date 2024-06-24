@@ -25,6 +25,8 @@ The form should contain fields for the survivor’s name, age, gender, last loca
 python manage.py createsuperuser
 visit: http://localhost:8000/admin and check if you can log in
 
+visit localhost:3000 and try to use the app
+
 # Run tests
 1. cd backend
 2. python manage.py test
@@ -146,7 +148,8 @@ visit: http://localhost:8000/admin and check if you can log in
 
 IMPROVEMENTS
 
-1. Change the representation of location to a point with 2 integer values
-2. Make sure all inventory is not possible to be under 0
-3. Age should also be an integer
-4.
+1. Change the representation of location to a point with 2 integer values.
+2. Make sure all inventory is not possible to be under 0.
+3. Age should also be an integer.
+4. Improve formatting of errors.
+5. Make inventory a 1 to many relationship
