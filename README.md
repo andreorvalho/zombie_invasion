@@ -47,15 +47,15 @@ visit localhost:3000 and try to use the app
    Request body:
    ```
    {
-     name: 'name',
-     age: '12',
-     gender: 'gender',
-     latitude: 'latitude',
-     longitude: 'longitude',
-     water: 1,
-     food: 1,
-     medication: 1,
-     ammunition: 1
+      name: 'name',
+      age: '12',
+      gender: 'gender',
+      latitude: 'latitude',
+      longitude: 'longitude',
+      water: 1,
+      food: 1,
+      medication: 1,
+      ammunition: 1
    }
    ```
    Responses:
@@ -63,15 +63,15 @@ visit localhost:3000 and try to use the app
    200: Successfully registered the survivor, responds with the newly created survivor data:
    ```
    {
-     name: 'name',
-     age: '12',
-     gender: 'gender',
-     latitude: 'latitude',
-     longitude: 'longitude',
-     water: 1,
-     food: 1,
-     medication: 1,
-     ammunition: 1
+      name: 'name',
+      age: '12',
+      gender: 'gender',
+      latitude: 'latitude',
+      longitude: 'longitude',
+      water: 1,
+      food: 1,
+      medication: 1,
+      ammunition: 1
    }
    ```
 
@@ -79,19 +79,21 @@ visit localhost:3000 and try to use the app
    ```
    {
     "age": [
-        "A valid integer is required."
+      "A valid integer is required."
     ],
     "gender": [
-        "This field may not be blank."
+      "This field may not be blank."
     ],
     "latitude": [
-        "This field may not be blank."
+      "This field may not be blank."
     ],
     "longitude": [
-        "This field may not be blank."
+      "This field may not be blank."
     ]
    }
    ```
+
+   500: When the system is down
 
 1.2. PUT '/survivors/id'
 
@@ -100,15 +102,15 @@ visit localhost:3000 and try to use the app
    Request body:
    ```
    {
-     name: 'name',
-     age: '12',
-     gender: 'gender',
-     latitude: 'latitude',
-     longitude: 'longitude',
-     water: 1,
-     food: 1,
-     medication: 1,
-     ammunition: 1
+      name: 'name',
+      age: '12',
+      gender: 'gender',
+      latitude: 'latitude',
+      longitude: 'longitude',
+      water: 1,
+      food: 1,
+      medication: 1,
+      ammunition: 1
    }
    ```
    Responses:
@@ -116,15 +118,15 @@ visit localhost:3000 and try to use the app
    200: Successfully updated the survivor, responds with the survivor data:
    ```
    {
-     name: 'name',
-     age: '12',
-     gender: 'gender',
-     latitude: 'latitude',
-     longitude: 'longitude',
-     water: 1,
-     food: 1,
-     medication: 1,
-     ammunition: 1
+      name: 'name',
+      age: '12',
+      gender: 'gender',
+      latitude: 'latitude',
+      longitude: 'longitude',
+      water: 1,
+      food: 1,
+      medication: 1,
+      ammunition: 1
    }
    ```
 
@@ -132,17 +134,77 @@ visit localhost:3000 and try to use the app
    ```
    {
     "age": [
-        "A valid integer is required."
+      "A valid integer is required."
     ],
     "gender": [
-        "This field may not be blank."
+      "This field may not be blank."
     ],
     "latitude": [
-        "This field may not be blank."
+      "This field may not be blank."
     ],
     "longitude": [
-        "This field may not be blank."
+      "This field may not be blank."
     ]
    }
    ```
+
+   500: When the system is down
+
+1.3. GET '/survivors'
+
+Returns all the survivors registered on the APP.
+
+  Responses:
+
+   200: Successfully registered the survivor, responds with the newly created survivor data:
+   ```
+   {
+      name: 'name',
+      age: '12',
+      gender: 'gender',
+      latitude: 'latitude',
+      longitude: 'longitude',
+      water: 1,
+      food: 1,
+      medication: 1,
+      ammunition: 1
+   }
+   ```
+
+   500: When the system is down
+
+
 2. Infection Reports
+
+2.1. POST '/infection_reports'
+
+   Registers a survivor as infected. That needs an id for the survivor who reports and an id for the survivor who is being reported
+
+   Request body:
+   ```
+   {
+      reported: '1',
+      reporter: '2',
+   }
+   ```
+   Responses:
+
+   200: Successfully registered the infection report, responds with the the report data:
+   ```
+   {
+      id
+      reported: '1',
+      reporter: '2',
+   }
+   ```
+
+   400: Fails to register the infection and returns all the errors:
+   ```
+   {
+    "reporter": [
+      "This field is required."
+    ]
+   }
+   ```
+
+   500: When the system is down
