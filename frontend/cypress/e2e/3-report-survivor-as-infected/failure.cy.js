@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('fails to update a survivor', () => {
+describe('fails to create a infection report', () => {
   const SURVIVORS = [
     {
       id: 1,
@@ -25,26 +25,23 @@ describe('fails to update a survivor', () => {
       statusCode: 200,
       body: SURVIVORS,
     }).as('survivors');
-    cy.intercept('PUT', 'http://localhost:3000/api/survivors/1', {
+    cy.intercept('POST', 'http://localhost:3000/api/infection_reports', {
       statusCode: 400,
-      body: { longitude: ['longitude is required.'] }
+      body: { reported: ['cannot be the same as reporter'] }
     });
   });
 
   it('returns an error', () => {
     // Navigates to the create link
     cy.visit('http://localhost:3000');
-    cy.get('[data-cy=update-location-link]').click();
-    cy.wait('@survivors').get('[data-cy=survivor-name]').first().should('have.text', SURVIVORS[0].name);
-    cy.get('[data-cy=survivor-name]').last().should('have.text', SURVIVORS[1].name);
+    cy.get('[data-cy=report-infection-link]').click();
 
-    // // Fills up the form
-    cy.get('[data-cy=edit-location-button]').first().click();
-    cy.get('input[id="survivor-latitude"]').type('432423234');
-    cy.get('input[id="survivor-longitude"]').clear();
-    cy.get('[data-cy=save-button').click();
+    // Fills up the form
+    cy.get('select[id="infection-reporter"]').select(1);
+    cy.get('select[id="infection-reported"]').select(1);
+    cy.get('[data-cy=save-button').click()
 
-    // Checks the errors message is there but the success is not
+    // Checks the success message is there but the errors is not
     cy.get('.text-danger').should('exist');
     cy.get('.text-success').should('not.exist');
   });

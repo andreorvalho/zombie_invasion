@@ -11,8 +11,8 @@ import {
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
-const SURVIVORS_API_URL = "/api/survivors/";
-const INFECTION_REPORTS_API_URL = "/api/infection_reports/";
+const SURVIVORS_API_URL = "/api/survivors";
+const INFECTION_REPORTS_API_URL = "/api/infection_reports";
 
 const LocationForm = () => {
   var [item, setItem] = useState({});
@@ -58,7 +58,7 @@ const LocationForm = () => {
       .post(INFECTION_REPORTS_API_URL, item)
       .then((res) => {
         console.log(res);
-        setsuccessMessage('Created a new survivor with success');
+        setsuccessMessage('Created a new infection report with success');
       })
       .catch((err) => {
         if (err.response.status === 500) {

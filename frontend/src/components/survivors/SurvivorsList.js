@@ -8,7 +8,7 @@ import axios from "axios";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
-const API_URL = "/api/survivors/";
+const API_URL = "/api/survivors";
 
 const SurvivorsList = () => {
   var [items, setItems] = useState([]);
@@ -37,7 +37,7 @@ const SurvivorsList = () => {
     setsuccessMessage(null);
 
     axios
-      .put(`${API_URL}${item.id}/`, item)
+      .put(`${API_URL}/${item.id}/`, item)
       .then((res) => {
         setsuccessMessage('Location was updated successfully');
         refreshList();
