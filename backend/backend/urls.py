@@ -22,6 +22,7 @@ from zombie_invasion import views
 
 router = routers.DefaultRouter()
 router.register(r'survivors', views.SurvivorView, 'survivor')
+router.register(r'infection_reports', views.InfectionReportView, 'infection_report')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

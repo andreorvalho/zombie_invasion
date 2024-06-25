@@ -4,15 +4,18 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  Button
 } from "reactstrap";
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
-const API_URL = "/api/survivors/";
+const SURVIVORS_API_URL = "/api/survivors/";
+const INFECTION_REPORTS_API_URL = "/api/infection_reports/";
 
 const LocationForm = () => {
+  var [item, setItem] = useState({});
   var [survivors, setSurvivors] = useState([]);
   var [formErrors, setformErrors] = useState([]);
   var [successMessage, setsuccessMessage] = useState(null);
@@ -23,7 +26,7 @@ const LocationForm = () => {
 
   const refreshList = () => {
     axios
-      .get(API_URL)
+      .get(SURVIVORS_API_URL)
       .then((res) => setSurvivors(res.data))
       .catch((err) => {
         if (err.response.status === 500) {
@@ -35,6 +38,38 @@ const LocationForm = () => {
         }
       });
   };
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+
+    const updatedItem = { ...item, [name]: value };
+    console.log(updatedItem);
+    setItem(updatedItem);
+  };
+
+  const handleCreateItem = (item) => {
+    setformErrors([]);
+    setsuccessMessage(null);
+    window.scrollTo(0, 0);
+
+    console.log(item);
+
+    axios
+      .post(INFECTION_REPORTS_API_URL, item)
+      .then((res) => {
+        console.log(res);
+        setsuccessMessage('Created a new survivor with success');
+      })
+      .catch((err) => {
+        if (err.response.status === 500) {
+          setformErrors({ api: ['The API is down']});
+        }
+        else {
+          console.log(err.response.data);
+          setformErrors(err.response.data);
+        }
+      });
+  }
 
   return (
     <Form>
@@ -53,8 +88,14 @@ const LocationForm = () => {
         <Label for="exampleSelect">
           Reporter
         </Label>
-        <Input id="reporter" name="select" type="select">
-          {survivors.map(element => (<option>{element.name}</option>))}
+        <Input
+          id="infection-reporter"
+          name="reporter"
+          type="select"
+          onChange={handleChange}
+        >
+          <option value="0">Enter Reporter's ID</option>
+          {survivors.map(element => (<option value={element.id}>{element.name}</option>))}
         </Input>
       </FormGroup>
 
@@ -62,10 +103,19 @@ const LocationForm = () => {
         <Label for="exampleSelect">
           Reported
         </Label>
-        <Input id="reported" name="select" type="select">
-          {survivors.map(element => (<option>{element.name}</option>))}
+        <Input
+          id="infection-reported"
+          name="reported"
+          type="select"
+          onChange={handleChange}
+        >
+          <option value="0">Enter Reported's ID</option>
+          {survivors.map(element => (<option value={element.id}>{element.name}</option>))}
         </Input>
       </FormGroup>
+      <Button data-cy="save-button" color="success" onClick={() => handleCreateItem(item)}>
+        Save
+      </Button>
      </Form>
   );
 };

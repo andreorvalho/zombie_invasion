@@ -23,7 +23,7 @@ const Layout = () => {
         </NavItem>
         <NavItem>
           <NavLink href="/survivors/report_infection" data-cy="report_infection-link">
-            Update a survivor's location
+            Report a survivor
           </NavLink>
         </NavItem>
       </Nav>

@@ -47,8 +47,6 @@ const SurvivorForm = () => {
       });
   }
 
-  console.log(Object.keys(formErrors));
-
   return(
     <Form>
       {Object.keys(formErrors).length > 0 &&
