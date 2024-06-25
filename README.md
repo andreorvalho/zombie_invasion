@@ -145,14 +145,4 @@ visit localhost:3000 and try to use the app
     ]
    }
    ```
-
-IMPROVEMENTS
-
-1. Change the representation of location to a point with 2 integer values.
-2. Make sure all inventory is not possible to be under 0.
-3. Age should also be an integer.
-4. Improve formatting of errors.
-5. Make inventory a 1 to many relationship.
-6. Make urls resource oriented.
-7. Missing errors if the API fails to load the whole list.
-8. Repeat usage of constants like API URL and API error handling.
+2. Infection Reports
